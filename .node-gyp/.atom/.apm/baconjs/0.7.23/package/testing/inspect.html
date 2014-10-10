@@ -1,0 +1,60 @@
+<script src="../dist/Bacon.js"></script>
+<script>
+var B = Bacon
+
+var a, ab, b, changes, f, fb, trace, traceAll;
+
+trace = function(obs, name) {
+  return obs.subscribeInternal(function(e) {
+    var desc;
+    desc = e.hasValue() ? e.value() : '' + e;
+    return console.log(name + ':', desc);
+  });
+};
+
+traceAll = function(obss) {
+  var name, obs, _results;
+  _results = [];
+  for (name in obss) {
+    obs = obss[name];
+    _results.push(trace(obs, name));
+  }
+  return _results;
+};
+
+changes = new B.Bus().name("changes");
+
+a = changes.map('.a').name("a");
+b = changes.map('.b').name("b");
+
+ab = B.combineAsArray(a, b).name("ab");
+
+f = ab.flatMapLatest(function(values) {
+  var valuesDesc;
+  valuesDesc = "( " + (values.join(', ')) + " )";
+  console.log('inside flatMapLatest: ' + valuesDesc);
+  return B.once('f' + valuesDesc);
+}).name("f");
+
+fb = B.combineAsArray(f, b).name("fb");
+
+traceAll({
+  a: a,
+  b: b,
+  ab: ab,
+  f: f,
+  fb: fb
+});
+
+changes.push({
+  a: 'a_0',
+  b: 'b_0'
+});
+
+console.log('-------------------------------');
+
+changes.push({
+  a: 'a_1',
+  b: 'b_1'
+});
+</script>

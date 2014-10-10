@@ -1,0 +1,27 @@
+<!--
+  To view these examples live, visit:
+  http://htmlpreview.github.io/?https://raw.github.com/baconjs/bacon.js/master/examples/examples.html
+ -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="../lib/jquery.js"></script>
+    <script src="../lib/underscore.js"></script>
+    <script src="../dist/Bacon.js"></script>
+    <script>
+
+var prop = Bacon.combineTemplate({
+  faq: Bacon.later(1).toProperty("default value")
+})
+
+Bacon.once(1).flatMap(function() {
+  console.log("in flatmp")
+  var problem = prop.sampledBy(Bacon.once())
+  problem.log("This is not printed");
+}).onValue(function() {});
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

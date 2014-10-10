@@ -1,0 +1,11 @@
+{
+  "name": "flatland-dark-ui",
+  "theme": "ui",
+  "version": "0.2.0",
+  "description": "A port of the Sublime Text/TextMate Dark UI Theme",
+  "license": "MIT",
+  "repository": "https://github.com/michaelhelmick/flatland-dark-ui",
+  "engines": {
+    "atom": ">0.40.0"
+  }
+}

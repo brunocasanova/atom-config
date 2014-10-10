@@ -1,0 +1,30 @@
+{
+  "name": "git-history",
+  "main": "./lib/git-history",
+  "version": "1.1.2",
+  "description": "View previous versions of any file known to git.",
+  "activationEvents": [
+    "git-history:show-file-history"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakesankey/git-history"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {},
+  "readme": "# Git History Package for Atom [![Build Status](http://img.shields.io/travis/jakesankey/git-history.svg?style=flat)](https://travis-ci.org/jakesankey/git-history)\n\nView previous versions of any file known to git.\n\n`apm install git-history`\n\n![](https://raw.githubusercontent.com/jakesankey/git-history/master/resources/screenshot.gif)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/jakesankey/git-history/issues"
+  },
+  "homepage": "https://github.com/jakesankey/git-history",
+  "_id": "git-history@1.1.2",
+  "dist": {
+    "shasum": "2a6d86c58a810b3c5c61b0914ef46106ad0f5ed4"
+  },
+  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11495-17998-i7ljsp/package.tgz",
+  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11495-17998-i7ljsp/package.tgz"
+}

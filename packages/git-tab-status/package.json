@@ -1,0 +1,27 @@
+{
+  "name": "git-tab-status",
+  "main": "./lib/git-tab-status.coffee",
+  "version": "1.2.0",
+  "description": "Color code tabs based on git status.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakesankey/git-tab-status"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.126.0"
+  },
+  "dependencies": {},
+  "readme": "## Git Tab Status Package for Atom [![Build Status](http://img.shields.io/travis/jakesankey/git-tab-status.svg?style=flat)](https://travis-ci.org/jakesankey/git-tab-status)\n\n`apm install git-tab-status`\n\n![](https://raw.githubusercontent.com/jakesankey/git-tab-status/master/resources/screenshot.png)\n\nThis package adds the ability for your open tabs to reflect their git status.",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/jakesankey/git-tab-status/issues"
+  },
+  "homepage": "https://github.com/jakesankey/git-tab-status",
+  "_id": "git-tab-status@1.2.0",
+  "dist": {
+    "shasum": "4e3881093c7a2a890c6c67afdd308ff5ec9d947b"
+  },
+  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11497-17714-1kxqjnl/package.tgz",
+  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11497-17714-1kxqjnl/package.tgz"
+}

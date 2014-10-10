@@ -1,0 +1,22 @@
+{
+  "name": "project-manager",
+  "main": "./lib/project-manager",
+  "version": "1.10.0",
+  "description": "Project Manager for easy access and switching between projects in Atom.",
+  "repository": "https://github.com/danielbrodin/atom-project-manager",
+  "license": "MIT",
+  "keywords": [
+    "project",
+    "manager",
+    "settings",
+    "workflow",
+    "productivity"
+  ],
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "season": "1.x",
+    "underscore-plus": "1.5.1"
+  }
+}

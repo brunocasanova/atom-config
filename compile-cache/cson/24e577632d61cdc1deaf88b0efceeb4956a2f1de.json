@@ -1,0 +1,1 @@
+{"context-menu":{".overlayer":{"Toggle comment":"comment:toggle"}},"menu":[{"label":"Packages","submenu":[{"label":"Comments","submenu":[{"label":"Toggle","command":"comment:toggle"}]}]}]}

@@ -1,0 +1,25 @@
+{
+  "name": "jshint-jsx",
+  "version": "0.1.0",
+  "description": "Wrapper for JSHint that provides nice support for JSX files.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shmatov/jshint-jsx"
+  },
+  "keywords": [
+    "jsx",
+    "jshint"
+  ],
+  "author": "Roman Shmatov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shmatov/jshint-jsx/issues"
+  },
+  "homepage": "https://github.com/shmatov/jshint-jsx",
+  "dependencies": {
+    "jshint": "2.4.x",
+    "lodash": "^2.4.1",
+    "react-tools": "^0.10.0"
+  }
+}

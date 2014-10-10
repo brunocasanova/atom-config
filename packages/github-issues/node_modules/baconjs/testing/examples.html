@@ -1,0 +1,31 @@
+<!--
+  To view these examples live, visit:
+  http://htmlpreview.github.io/?https://raw.github.com/baconjs/bacon.js/master/examples/examples.html
+ -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="../lib/jquery.js"></script>
+    <script src="../lib/underscore.js"></script>
+    <script src="../dist/Bacon.js"></script>
+    <script>
+
+      var input = new Bacon.Bus();
+
+      var prop = Bacon.combineTemplate({
+        faq: input.toProperty("default value")
+        });
+
+        var events = new Bacon.Bus();
+        events.flatMapLatest(function() {
+          var problem = prop.sampledBy(Bacon.once())
+          problem.log("This is not printed");
+        }).onValue(function() {});
+
+          events.push();
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

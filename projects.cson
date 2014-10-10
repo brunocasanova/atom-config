@@ -1,0 +1,76 @@
+'findhit/findhit':
+  'title': 'findhit/findhit'
+  'paths': [
+    '~/GitHub/findhit/findhit'
+  ]
+'findhit/findhit-class':
+  'title': 'findhit/findhit-class'
+  'paths': [
+    '~/GitHub/findhit/findhit-class'
+  ]
+'findhit/findhit-evented':
+  'title': 'findhit/findhit-evented'
+  'paths': [
+    '~/GitHub/findhit/findhit-evented'
+  ]
+'findhit/findhit-remote-evented':
+  'title': 'findhit/findhit-remote-evented'
+  'paths': [
+    '~/GitHub/findhit/findhit-remote-evented'
+  ]
+'findhit/findhit-promise':
+  'title': 'findhit/findhit-promise'
+  'paths': [
+    '~/GitHub/findhit/findhit-promise'
+  ]
+'findhit/findhit-process':
+  'title': 'findhit/findhit-process'
+  'paths': [
+    '~/GitHub/findhit/findhit-process'
+  ]
+'findhit/findhit-util':
+  'title': 'findhit/findhit-util'
+  'paths': [
+    '~/GitHub/findhit/findhit-util'
+  ]
+'findhit/findhit-hotplug':
+  'title': 'findhit/findhit-util'
+  'paths': [
+    '~/GitHub/findhit/findhit-hotplug'
+  ]
+'findhit/findhit-proxywrap':
+  'title': 'findhit/findhit-proxywrap'
+  'paths': [
+    '~/GitHub/findhit/findhit-proxywrap'
+  ]
+'findhit/findhit-oauth-pam':
+  'title': 'findhit/findhit-oauth-pam'
+  'paths': [
+    '~/GitHub/findhit/findhit-oauth-pam'
+  ]
+
+'neckjs/neck':
+  'title': 'neckjs/neck'
+  'paths': [
+    '~/GitHub/neckjs/neck'
+  ]
+'neckjs/neck-server':
+  'title': 'neckjs/neck-server'
+  'paths': [
+    '~/GitHub/neckjs/neck-server'
+  ]
+'neckjs/neck-client':
+  'title': 'neckjs/neck-client'
+  'paths': [
+    '~/GitHub/neckjs/neck-client'
+  ]
+'neckjs/neck-browser':
+  'title': 'neckjs/neck-browser'
+  'paths': [
+    '~/GitHub/neckjs/neck-browser'
+  ]
+'neckjs/neckjs.github.io':
+  'title': 'neckjs/neckjs.github.io'
+  'paths': [
+    '~/GitHub/neckjs/neckjs.github.io'
+  ]

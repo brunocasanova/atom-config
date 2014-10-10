@@ -1,0 +1,45 @@
+{
+  "name": "timekeeper",
+  "prouctName": "timekeeper",
+  "version": "0.4.0",
+  "description": "Timekeeper handles all of your time tracking needs from within Atom.",
+  "keywords": [
+    "timekeeper",
+    "time tracking",
+    "time tracker",
+    "time management"
+  ],
+  "homepage": "https://github.com/skulled/timekeeper",
+  "main": "./lib/timekeeper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skulled/timekeeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/skulled/timekeeper/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/skulled/timekeeper/raw/master/LICENSE.md"
+    }
+  ],
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "moment": "*",
+    "twix": "*",
+    "mkdirp": "*"
+  },
+  "devDependencies": {},
+  "private": true,
+  "readme": "# Timekeeper\n\nTimekeeper allows you to track time spent on projects, and provides (or rather will provide) ways to view the data in different ways as well as the ability to export and integrate this data with external endpoints.\n\n##### Default Status Bar View\n\n![Timekeeper](https://github.com/skulled/timekeeper/raw/master/docs/assets/images/timekeeper-status-bar-view.png)\n\n##### Active & Tracking Time\n\n![Timekeeper Active](https://github.com/skulled/timekeeper/raw/master/docs/assets/images/timekeeper-status-bar-view-active.png)\n\n##### Paused State\n\n![Timekeeper Paused](https://github.com/skulled/timekeeper/raw/master/docs/assets/images/timekeeper-status-bar-view-paused.png)\n\nAs of `v0.3.0`, it provides a preliminary dashboard to view time tracking data, which is very incomplete and pretty useless. Further reporting & dashboard functionality coming soon!!\n\n> _Although every effort is made to keep things as stable as possible, please do note that the package is under constant development so there might be occasional bugs. If you run across any issues, please [add an issue](https://github.com/skulled/timekeeper/issues/new) with the details._\n\n## Installation\n\n### Command Line\n\n```bash\napm install timekeeper\n```\n\n### Atom\n\n```\nCommand Palette ➔ Settings View: Install Packages ➔ Timekeeper\n```\n\n## Features\n\nTimekeeper currently supports the core basic functionality of being able to track time spent on projects, and persists this data to its internal data store.\n\nReposting, external services integration & other features are currently in development and will be released gradually.\n\n### Current Features\n\n- [x] Displays timer in the status bar with the time being tracked, with occasional status messages\n- [x] Saves tracked time data (to be used with features currently under development)\n- [x] Automatically handle saving of time tracking data from previous session, even if the `Finish` command was not issued manually before exiting from Atom\n- [x] Tracks when Atom is out of focus and collects that data, so that it can be factored in for better reporting\n- [x] Configuration setting to auto enable time tracking on all projects on load (Per-project configuration coming soon!!). **Defaults to FALSE/DISABLED**, enable it in your settings to activate the feature\n- [x] Preliminary & basic Dashboard UI available now (not very useful, but it is a start :smile:)\n\n## Commands\n\n**_Start_**\n\n```\nctrl-alt-s\n```\n\n> Starts tracking time on this project\n>\n> _Issuing this command when time tracking is paused, will continue from where it left off_\n\n**_Pause_**\n\n```\nctrl-alt-p\n```\n\n> Pause time tracking temporarily without loosing already tracked time\n>\n> _Issuing this command when time tracking is paused, will continue from where it left off_\n\n**_Finish_**\n\n```\nctrl-alt-f\n```\n\n> Stops tracking time, and saves the tracked time data\n\n**_Reset_**\n\n```\nctrl-alt-r\n```\n\n> Discards current tracked time data (not saved), and starts fresh again\n\n**_Abort_**\n\n```\nctrl-alt-a\n```\n\n> Stop tracking time, and discard the tracked time up to this point\n>\n> **Action is permanent and tracked time data will be lost forever prior to save!**\n\n**_Dashboard_**\n\n```\nctrl-alt-d\n```\n\n> Displays the Timekeeper UI interfaces - only the Dashboard (basic version) available at this point\n\n## Feedback & Issues\n\nAny feedback is appreciated!\n\nThere are a number of features that are under development, but if there are specific features you would like to see added, please [add an issue](https://github.com/skulled/timekeeper/issues/new) and tag it as \"feature\".\n\nIf you encounter any bugs or cannot get something working, please check the current [open issues](https://github.com/skulled/timekeeper/issues) to see if it has already been raised, before adding a new issue with the problem you are facing.",
+  "readmeFilename": "README.md",
+  "_id": "timekeeper@0.4.0",
+  "dist": {
+    "shasum": "f2e49987712033e49964f53d891873c259598c68"
+  },
+  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11497-18541-tq4xl4/package.tgz",
+  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11497-18541-tq4xl4/package.tgz"
+}

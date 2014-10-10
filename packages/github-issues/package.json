@@ -1,0 +1,44 @@
+{
+  "name": "github-issues",
+  "version": "0.2.0",
+  "description": "GitHub issue tracking from within Atom.",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baconscript/github-issues.git"
+  },
+  "keywords": [
+    "github",
+    "issues",
+    "atom"
+  ],
+  "author": {
+    "name": "Ryan Muller",
+    "email": "ryan@muller.io"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baconscript/github-issues/issues"
+  },
+  "engines": {
+    "atom": ">=0.100.0"
+  },
+  "homepage": "https://github.com/baconscript/github-issues",
+  "dependencies": {
+    "baconjs": "^0.7.22",
+    "lodash": "^2.4.1",
+    "request": "^2.44.0",
+    "marked": "~0.3.2"
+  },
+  "readme": "# github-issues\n\nA simple GitHub issue tracker.\n\n## Use\n\nIf you select `Packages` -> `GitHub Issues` -> `Issues`, then Atom\nwill fetch the issues connected to the current repo's origin repo,\nassuming it's on GitHub. Easy peasy.\n",
+  "readmeFilename": "README.md",
+  "_id": "github-issues@0.2.0",
+  "dist": {
+    "shasum": "62004bee19b86a718948a06c5074ec5e707a503d"
+  },
+  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11494-6008-7oii4m/package.tgz",
+  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11494-6008-7oii4m/package.tgz"
+}

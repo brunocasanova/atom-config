@@ -1,0 +1,39 @@
+{
+  "name": "comment",
+  "main": "./lib/comment",
+  "version": "0.2.7",
+  "description": "Insert block comments or single line comments on selected text with keyboard shortcut",
+  "activationEvents": [
+    "comment:toggle",
+    "comment:toggleSingleLine"
+  ],
+  "scripts": {
+    "test": "./node_modules/jasmine-node/bin/jasmine-node --verbose spec/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/havber/comment"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.14.5"
+  },
+  "dependencies": {
+    "sprint": "0.3.1"
+  },
+  "readme": "# comment package for atom\n\nAtom package for inserting block- or single line comments via keyboard shortcut\n\n![alt tag](https://raw.github.com/havber/comment/master/example.gif)\n\n## Usage\nSelect the text you want to comment, and hit ```shift-cmd-m```\nIf selection is empty, an empty comment block will be inserted\n\nBoth block comments and single line comments are toggled on/off on ```shift-cmd-m```\n\n## Language support\n...is based on file extensions and will be added incrementally.\nLatest version supports\n* .class\n* .coffee\n* .cs\n* .css\n* .html/.htm\n* .js\n* .less\n* .md\n* .rb\n* .yml\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/havber/comment/issues"
+  },
+  "homepage": "https://github.com/havber/comment",
+  "_id": "comment@0.2.7",
+  "dist": {
+    "shasum": "8add0a7f32a288edfdffca787c298b8a402d21ee"
+  },
+  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11497-23553-18l8qfb/package.tgz",
+  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11497-23553-18l8qfb/package.tgz"
+}

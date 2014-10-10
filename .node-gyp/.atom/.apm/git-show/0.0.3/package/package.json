@@ -1,0 +1,17 @@
+{
+  "name": "git-show",
+  "main": "./lib/git-show",
+  "version": "0.0.3",
+  "description": "git show",
+  "activationEvents": [
+    "git-show:toggle"
+  ],
+  "repository": "https://github.com/fundon/atom-git-show",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "git-utils": "^1.2.2"
+  }
+}

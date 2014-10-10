@@ -1,0 +1,13 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Git History'
+      'submenu': [
+        { 'label': 'Show File History', 'command': 'git-history:show-file-history' }
+      ]
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "name": "monokai-seti",
+  "theme": "syntax",
+  "version": "0.3.0",
+  "private": true,
+  "description": "A monokai theme for the seti ui",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schmitzjake/monokai-seti"
+  },
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.39.0"
+  },
+  "readme": "# Monokai-seti theme\n\nA monokai syntax theme for the seti-ui for Atom.\n\nForked from the atom monokai syntax theme.\n\n![](https://i.imgur.com/xBHmpMA.png)\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/schmitzjake/monokai-seti/issues"
+  },
+  "homepage": "https://github.com/schmitzjake/monokai-seti",
+  "_id": "monokai-seti@0.3.0",
+  "dist": {
+    "shasum": "a473f850cfe053fa8f4872cf59bc91940b03cdbd"
+  },
+  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11493-5520-js3f5p/package.tgz",
+  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11493-5520-js3f5p/package.tgz"
+}
