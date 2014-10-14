@@ -12,7 +12,7 @@
     'atom-dark-ui'
     'monokai'
   ]
-  'projectHome': '/Users/josemoreira/GitHub/'
+  'projectHome': '~/GitHub/'
   'disabledPackages': [
     'tabs'
     'metrics'
