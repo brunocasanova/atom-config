@@ -1,9 +1,0 @@
-var __PackageName__View = require('../lib/__package-name__-view');
-
-describe('__PackageName__View', function() {
-
-  it('has one valid test', function() {
-    expect('life').toBe('easy');
-  });
-
-});
