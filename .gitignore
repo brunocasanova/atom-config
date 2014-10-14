@@ -1,7 +1,8 @@
-storage
-compile-cache
-dev
+storage/*
+compile-cache/*
+dev/*
 .npm/*
 .node-gyp/*
 .timekeeper/*
 .git-history/*
+
