@@ -1,7 +1,7 @@
 storage
 compile-cache
 dev
-.npm
-.node-gyp
-.timekeeper
-.git-history
+.npm/*
+.node-gyp/*
+.timekeeper/*
+.git-history/*
