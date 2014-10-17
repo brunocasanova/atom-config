@@ -17,21 +17,34 @@ atom config folder sharing for all findhit collaborators
 # Installation
 
 * Fork this repo into your personal account;
-* Replace `~/.atom` with your fork:
+* Link `~/.atom` with your fork clone dir:
+
+```bash
+
+ATOM_CFG="~/.atom"
+USER="brunocasanova"
+REPO_DIR="~/GitHub/${USER}/atom-config"
+REPO_ORIGIN="https://github.com/${USER}/atom-config.git"
+REPO_UPSTREAM="https://github.com/${USER}/atom-config.git"
+
+```
 
 ```bash
 
 # Removing old folder
 rm -fR ~/.atom;
 
-# Cloning fork into ~/.atom
-git clone https://github.com/[you-repo]/atom-config.git ~/.atom;
+# Cloning fork
+git clone $REPO_ORIGIN $REPO_DIR;
+
+# Link ~/atom to repo's dir
+ln $REPODIR $ATOM_CFG;
 
 # Changing to newly created dir
-cd ~/.atom;
+cd $REPO_DIR;
 
 # Adding remote of upstream repo.
-git remote add upstream https://github.com/findhit/atom-config.git;
+git remote add upstream $REPO_UPSTREAM;
 
 ```
 
@@ -40,10 +53,10 @@ git remote add upstream https://github.com/findhit/atom-config.git;
 ```bash
 
 # Changing to your fork's cloned dir
-cd ~/.atom;
+cd $REPO_DIR;
 
 # Fetching upstream changes
-git fetch upstream
+git fetch upstream;
 
 # Reset your local master by upstream/master
 git checkout master;
