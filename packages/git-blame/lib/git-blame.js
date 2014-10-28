@@ -10,11 +10,7 @@ function activate() {
   initializeContext();
 
   // git-blame:blame
-  atom.workspaceView.command('git-blame:toggle', function() {
-    return toggleBlame();
-  });
-
-  return;
+  atom.workspaceView.command('git-blame:toggle', toggleBlame);
 }
 
 function initializeContext() {
@@ -35,18 +31,16 @@ function toggleBlame() {
   if (!projectBlamer) {
     return;
   }
-
-  var editor = atom.workspace.activePaneItem;
-  var filePath = editor.getPath();
-
-  BlameViewController.toggleBlame(filePath, projectBlamer);
+  BlameViewController.toggleBlame(projectBlamer);
 }
 
 // EXPORTS
 module.exports = {
   configDefaults: {
     useCustomUrlTemplateIfStandardRemotesFail: false,
-    customCommitUrlTemplateString: 'Example -> https://github.com/<%- project %>/<%- repo %>/commit/<%- revision %>'
+    customCommitUrlTemplateString: 'Example -> https://github.com/<%- project %>/<%- repo %>/commit/<%- revision %>',
+    dateFormatString: 'YYYY-MM-DD',
+    ignoreWhiteSpaceDiffs: false
   },
   toggleBlame: toggleBlame,
   activate: activate

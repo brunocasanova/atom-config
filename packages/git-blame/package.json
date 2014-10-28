@@ -1,7 +1,7 @@
 {
   "name": "git-blame",
   "main": "./lib/git-blame",
-  "version": "0.2.4",
+  "version": "0.3.1",
   "description": "Toggle git-blame annotations in the gutter of atom editor.",
   "activationEvents": [
     "git-blame:toggle"
@@ -12,23 +12,180 @@
   },
   "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=0.121.0"
   },
   "dependencies": {
     "underscore": "1.6.0",
     "moment": "2.6.x",
     "loophole": "1.0.x"
   },
-  "readme": "#git-blame\n\n> Toggle git-blame annotations for the current file in the gutter of atom editor.\n\n![screenshot](https://raw.githubusercontent.com/alexcorre/git-blame/master/images/screen-shot.png)\n\n## Usage\n\nShow git blame for the current editor with the command `ctrl-b`. Only works when `.editor` is active. Submodules? No problem. Click on the revision to be taken to the commit page on Github, Bitbucket, or your remote repository url of choice.\n\n## Setting a Custom Remote Repo Url\nThis plugin will first check to see if your repo is backed by **Github** or **Bitbucket** so nothing is required if your repo is hosted on one of these.\n\nIf its not, you can easily set a custom revision URL string like so:\n- From the settings view go to settings for this package *Git Blame*\n- Check the box for \"Use Custom Url Template If Standard Remotes Fail\"\n- Set your url format string in the box labeled Custom Commit Url String\n\n![url-settings](https://raw.githubusercontent.com/alexcorre/git-blame/master/images/url-settings.png)\n\nThe URL string should contain the following three placeholder variables wrapped in underscore template delimiters like so: `<%- variable %>`.\n- `project` - Will be replaced with the name of the project in your remote git repository. For this repo it would be `alexcorre`.\n- `repo` - Will be replaced with the name of the repository. For this repo it would be `git-blame`.\n- `revision` - Will be replaced with the full git revision hash you clicked on.\n\nI'll use github as an example. Its already supported out of the box, but if it wasn't its custom url string would be:\n\n```\nhttps://github.com/<%- project %>/<%- repo %>/commit/<%- revision %>\n```\nSo when you clicked on hash revision 12345 in this git-blame repository, you would visit the following url:\n\n```\nhttps://github.com/alexcorre/git-blame/commit/12345\n```\n\n## Release History\n\n* **0.2.0**: Initial Release\n* **0.2.1**\n  - Fix [Issue #1](https://github.com/alexcorre/git-blame/issues/1). Remote URL parsing.\n  - Added RemoteRevision unit tests\n* **0.2.2**: [Pull #6](https://github.com/alexcorre/git-blame/pull/6). Remote URL parsing without .git.\n* **0.2.3**: [Issue #5](https://github.com/alexcorre/git-blame/issues/5). Fix multiple gutters. Better error handling.\n* **0.2.4**: React editor support. Support for repsitories that dont specify a project.\n",
+  "readme": "#git-blame\n\n> Toggle git-blame annotations for the current file in the gutter of atom editor.\n\n![screenshot](https://raw.githubusercontent.com/alexcorre/git-blame/master/images/screen-shot.png)\n\n## Usage\n\nShow git blame for the current editor with the command `ctrl-b`. Only works when `.editor` is active. Submodules? No problem. Click on the revision to be taken to the commit page on Github, Bitbucket, or your remote repository url of choice.\n\n## Options\n\n### Ignore White Space Diffs\n\nIf this option is selected, the `git blame` command will be run with `-w` option.\n\n### Date Format String\n\nDefault date format is `YYYY-MM-DD`. This feature is backed by [moment.js](http://momentjs.com/). Any formats [supported by moment](http://momentjs.com/docs/#/displaying/format/) are valid here.\n\n### Setting a Custom Remote Repo Url\nThis plugin will first check to see if your repo is backed by **Github** or **Bitbucket** so nothing is required if your repo is hosted on one of these.\n\nIf its not, you can easily set a custom revision URL string like so:\n- From the settings view go to settings for this package *Git Blame*\n- Check the box for \"Use Custom Url Template If Standard Remotes Fail\"\n- Set your url format string in the box labeled Custom Commit Url String\n\n![url-settings](https://raw.githubusercontent.com/alexcorre/git-blame/master/images/url-settings.png)\n\nThe URL string should contain the following three placeholder variables wrapped in underscore template delimiters like so: `<%- variable %>`.\n- `project` - Will be replaced with the name of the project in your remote git repository. For this repo it would be `alexcorre`.\n- `repo` - Will be replaced with the name of the repository. For this repo it would be `git-blame`.\n- `revision` - Will be replaced with the full git revision hash you clicked on.\n\nI'll use github as an example. Its already supported out of the box, but if it wasn't its custom url string would be:\n\n```\nhttps://github.com/<%- project %>/<%- repo %>/commit/<%- revision %>\n```\nSo when you clicked on hash revision 12345 in this git-blame repository, you would visit the following url:\n\n```\nhttps://github.com/alexcorre/git-blame/commit/12345\n```\n\n## Release History\n\n* **0.2.0**: Initial Release\n* **0.2.1**\n  - Fix [Issue #1](https://github.com/alexcorre/git-blame/issues/1). Remote URL parsing.\n  - Added RemoteRevision unit tests\n* **0.2.2**: [Pull #6](https://github.com/alexcorre/git-blame/pull/6). Remote URL parsing without .git.\n* **0.2.3**: [Issue #5](https://github.com/alexcorre/git-blame/issues/5). Fix multiple gutters. Better error handling.\n* **0.2.4**: React editor support. Support for repositories that don't specify a project.\n* **0.3.0**\n  - Resizable width of blame panel\n  - git-blame view layer rebuilt in React\n  - See commit message tooltip when hovering over a commit\n  - git-blame now updates to pick up changes on save\n  - support for remote repositories that have \".\" in project or repo names\n* **0.3.1**: [Issue #41](https://github.com/alexcorre/git-blame/issues/5). Option to blame with -w.\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/alexcorre/git-blame/issues"
   },
   "homepage": "https://github.com/alexcorre/git-blame",
-  "_id": "git-blame@0.2.4",
+  "_id": "git-blame@0.3.1",
   "dist": {
-    "shasum": "0b702de1a40fb18fd26fde04f956209fb338fd7e"
+    "shasum": "03e6744940f280968ab9bd5286e891b33423ad4a"
   },
-  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11495-18017-wvgw25/package.tgz",
-  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-11495-18017-wvgw25/package.tgz"
+  "_resolved": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-114928-23660-1fqy85v/package.tgz",
+  "_from": "/private/var/folders/sb/znnlzdc970v5vr38ymlsf2vr0000gp/T/d-114928-23660-1fqy85v/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "loophole",
+        "version": "1.0.0",
+        "path": "node_modules/loophole/lib/loophole.js"
+      },
+      {
+        "name": "moment",
+        "version": "2.6.0",
+        "path": "node_modules/moment/moment.js"
+      },
+      {
+        "name": "underscore",
+        "version": "1.6.0",
+        "path": "node_modules/underscore/underscore.js"
+      }
+    ],
+    "extensions": {
+      ".js": [
+        "lib/controllers/blameViewController.js",
+        "lib/controllers/errorController.js",
+        "lib/git-blame.js",
+        "lib/locales/strings.js",
+        "lib/util/RemoteRevision.js",
+        "lib/util/blameFormatter.js",
+        "lib/util/blamer.js",
+        "lib/util/gitCommander.js",
+        "node_modules/loophole/lib/loophole.js",
+        "node_modules/moment/Gruntfile.js",
+        "node_modules/moment/ender.js",
+        "node_modules/moment/lang/ar-ma.js",
+        "node_modules/moment/lang/ar.js",
+        "node_modules/moment/lang/bg.js",
+        "node_modules/moment/lang/br.js",
+        "node_modules/moment/lang/bs.js",
+        "node_modules/moment/lang/ca.js",
+        "node_modules/moment/lang/cs.js",
+        "node_modules/moment/lang/cv.js",
+        "node_modules/moment/lang/cy.js",
+        "node_modules/moment/lang/da.js",
+        "node_modules/moment/lang/de.js",
+        "node_modules/moment/lang/el.js",
+        "node_modules/moment/lang/en-au.js",
+        "node_modules/moment/lang/en-ca.js",
+        "node_modules/moment/lang/en-gb.js",
+        "node_modules/moment/lang/eo.js",
+        "node_modules/moment/lang/es.js",
+        "node_modules/moment/lang/et.js",
+        "node_modules/moment/lang/eu.js",
+        "node_modules/moment/lang/fa.js",
+        "node_modules/moment/lang/fi.js",
+        "node_modules/moment/lang/fo.js",
+        "node_modules/moment/lang/fr-ca.js",
+        "node_modules/moment/lang/fr.js",
+        "node_modules/moment/lang/gl.js",
+        "node_modules/moment/lang/he.js",
+        "node_modules/moment/lang/hi.js",
+        "node_modules/moment/lang/hr.js",
+        "node_modules/moment/lang/hu.js",
+        "node_modules/moment/lang/hy-am.js",
+        "node_modules/moment/lang/id.js",
+        "node_modules/moment/lang/is.js",
+        "node_modules/moment/lang/it.js",
+        "node_modules/moment/lang/ja.js",
+        "node_modules/moment/lang/ka.js",
+        "node_modules/moment/lang/km.js",
+        "node_modules/moment/lang/ko.js",
+        "node_modules/moment/lang/lb.js",
+        "node_modules/moment/lang/lt.js",
+        "node_modules/moment/lang/lv.js",
+        "node_modules/moment/lang/mk.js",
+        "node_modules/moment/lang/ml.js",
+        "node_modules/moment/lang/mr.js",
+        "node_modules/moment/lang/ms-my.js",
+        "node_modules/moment/lang/nb.js",
+        "node_modules/moment/lang/ne.js",
+        "node_modules/moment/lang/nl.js",
+        "node_modules/moment/lang/nn.js",
+        "node_modules/moment/lang/pl.js",
+        "node_modules/moment/lang/pt-br.js",
+        "node_modules/moment/lang/pt.js",
+        "node_modules/moment/lang/ro.js",
+        "node_modules/moment/lang/ru.js",
+        "node_modules/moment/lang/sk.js",
+        "node_modules/moment/lang/sl.js",
+        "node_modules/moment/lang/sq.js",
+        "node_modules/moment/lang/sr-cyr.js",
+        "node_modules/moment/lang/sr.js",
+        "node_modules/moment/lang/sv.js",
+        "node_modules/moment/lang/ta.js",
+        "node_modules/moment/lang/th.js",
+        "node_modules/moment/lang/tl-ph.js",
+        "node_modules/moment/lang/tr.js",
+        "node_modules/moment/lang/tzm-la.js",
+        "node_modules/moment/lang/tzm.js",
+        "node_modules/moment/lang/uk.js",
+        "node_modules/moment/lang/uz.js",
+        "node_modules/moment/lang/vi.js",
+        "node_modules/moment/lang/zh-cn.js",
+        "node_modules/moment/lang/zh-tw.js",
+        "node_modules/moment/min/langs.js",
+        "node_modules/moment/min/langs.min.js",
+        "node_modules/moment/min/moment-with-langs.js",
+        "node_modules/moment/min/moment-with-langs.min.js",
+        "node_modules/moment/min/moment.min.js",
+        "node_modules/moment/min/tests.js",
+        "node_modules/moment/moment.js",
+        "node_modules/moment/package.js",
+        "node_modules/moment/tasks/check_sauce_creds.js",
+        "node_modules/moment/tasks/component.js",
+        "node_modules/moment/tasks/embed_languages.js",
+        "node_modules/moment/tasks/history.js",
+        "node_modules/moment/tasks/size.js",
+        "node_modules/moment/tasks/zones.js",
+        "node_modules/underscore/underscore-min.js",
+        "node_modules/underscore/underscore.js"
+      ],
+      ".coffee": [
+        "lib/views/blame-error-view.coffee",
+        "lib/views/blame-line-view.coffee",
+        "lib/views/blame-list-view.coffee",
+        "node_modules/moment/f.coffee",
+        "node_modules/moment/foo.coffee"
+      ],
+      ".json": [
+        "node_modules/loophole/package.json",
+        "node_modules/moment/bower.json",
+        "node_modules/moment/component.json",
+        "node_modules/moment/composer.json",
+        "node_modules/moment/package.json",
+        "node_modules/underscore/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "keymaps",
+          "lib/controllers",
+          "lib",
+          "lib/locales",
+          "lib/util",
+          "lib/views",
+          "menus",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "underscore": "1.6.0",
+          "moment": "2.6.x",
+          "loophole": "1.0.x"
+        }
+      }
+    ]
+  }
 }
