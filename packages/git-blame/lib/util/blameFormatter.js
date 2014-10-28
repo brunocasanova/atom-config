@@ -12,6 +12,17 @@ function parseRevision(line) {
 }
 
 /**
+ * Parses the author name from blame data for a line of code.
+ *
+ * @param {string} line - the blame data for a particular line of code
+ * @return {string} - the author name for that line of code.
+ */
+function parseAuthor(line) {
+  var committerMatcher = /^author\s(.*)$/m;
+  return line.match(committerMatcher)[1];
+}
+
+/**
  * Parses the committer name from blame data for a line of code.
  *
  * @param {string} line - the blame data for a particular line of code
@@ -23,16 +34,47 @@ function parseCommitter(line) {
 }
 
 /**
+ * Formats a date according to the user's preferred format string.
+ * @param {object} date - a moment date object
+ */
+function formatDate(date) {
+  var formatString = atom.config.get('git-blame.dateFormatString');
+  return date.format(formatString);
+}
+
+/**
+ * Parses the author date from blame data for a line of code.
+ *
+ * @param {string} line - the blame data for a particular line of code
+ * @return {string} - human readable date string of the lines author date
+ */
+function parseAuthorDate(line) {
+  var dateMatcher = /^author-time\s(.*)$/m;
+  var dateStamp = line.match(dateMatcher)[1];
+  return formatDate(moment.unix(dateStamp));
+}
+
+/**
  * Parses the commit date from blame data for a line of code.
  *
  * @param {string} line - the blame data for a particular line of code
  * @return {string} - human readable date string of the lines commit date
  */
-function parseDate(line) {
+function parseCommitterDate(line) {
   var dateMatcher = /^committer-time\s(.*)$/m;
   var dateStamp = line.match(dateMatcher)[1];
+  return formatDate(moment.unix(dateStamp));
+}
 
-  return moment.unix(dateStamp).format('M/D/YY');
+/**
+ * Parses the summary line from the blame data for a line of code
+ *
+ * @param {string} line - the blame data for a particular line of code
+ * @return {string} - the summary line for the last commit for a line of code
+ */
+function parseSummary(line) {
+  var summaryMatcher = /^summary\s(.*)$/m;
+  return line.match(summaryMatcher)[1];
 }
 
 /**
@@ -43,6 +85,7 @@ function parseDate(line) {
  * line: the line number (1 indexed)
  * committer: name of the committer of that line
  * date: the date of the commit
+ * summary: the summary of the commit
  *
  * @param {string} blameData - the blame --porcelain output for a line of code
  * @param {number} index - the index that the data appeared in an array of line
@@ -53,8 +96,11 @@ function parseBlameLine(blameData, index) {
   return markIfNoCommit({
     hash: parseRevision(blameData),
     line: index + 1,
+    author: parseAuthor(blameData),
+    date: parseAuthorDate(blameData),
     committer: parseCommitter(blameData),
-    date: parseDate(blameData)
+    committerDate: parseCommitterDate(blameData),
+    summary: parseSummary(blameData)
   });
 }
 
@@ -89,5 +135,6 @@ function parseBlameOutput(blameOut) {
 
 // EXPORTS
 module.exports = {
-  parseBlame: parseBlameOutput
+  parseBlame: parseBlameOutput,
+  formatDate: formatDate
 };

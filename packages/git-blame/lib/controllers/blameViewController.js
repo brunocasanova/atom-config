@@ -1,101 +1,50 @@
-const _ = require('underscore');
 const $ = require('atom').$;
+const React = require('atom').React;
 const BlameListView = require('../views/blame-list-view');
-const errorController = require('../controllers/errorController');
+const RemoteRevision = require('../util/RemoteRevision');
+const errorController = require('./errorController');
 
-const TOGGLE_DEBOUNCE_TIME = 600;
-const SELECTOR_REACT = '.editor-contents > .gutter';
-const SELECTOR = '.gutter';
 
 /**
- * Getter for the currently focused editor.
+ * Display or hide a BlameListView for the active editor.
  *
- * @return {JQuery} - The currently focused editor element.
- */
-function getFocusedEditorContainer () {
-  var activePane = atom.workspaceView.getActivePaneView();
-  return activePane.find('.editor.is-focused');
-}
-
-/**
- * If active editor is not currently blaming funs blame command for given
- * file and blamer and inserts a BlameView for the file. If blame data is already
- * shown it removes that element.
+ * If the active editor does not have an existing BlameListView, one will be
+ * mounted.
  *
- * @param {String} filePath - path to the file to blame
- * @param {Blamer} projectBlamer - a fully initialized Blamer for the current project
+ * @param {Blamer} projectBlamer - a Blamer for the current project
  */
-function toggleBlame(filePath, projectBlamer) {
-  var $focusedEditor = getFocusedEditorContainer();
-  if ($focusedEditor.hasClass('blaming')) {
-    // kill the blame container if we're already blaming this container
-    $focusedEditor.removeClass('blaming');
-    $focusedEditor.find('.git-blame').remove();
+function toggleBlame(projectBlamer) {
+  var editorView = atom.workspaceView.getActiveView();
+  var editor = editorView.getEditor();
+  var filePath = editor.getPath();
 
-    // unbind the scroll event
-    $focusedEditor.find('.vertical-scrollbar').off('scroll');
+  if (!editorView.blameView) {
+    var remoteUrl = projectBlamer.repo.getOriginUrl(filePath);
+    var remoteRevision;
+    try {
+      remoteRevision = RemoteRevision.create(remoteUrl);
+    } catch (e) {
+      // the only exception possible occurs when the template string is invalid
+      errorController.showError('error-no-custom-url-specified');
+      return;
+    }
+
+    // insert the BlameListView after the gutter div
+    var mountPoint = $('<div>', {'class': 'git-blame-mount'});
+    editorView.find('.gutter').after(mountPoint);
+
+    editorView.blameView = React.renderComponent(new BlameListView({
+      projectBlamer: projectBlamer,
+      remoteRevision: remoteRevision,
+      editorView: editorView
+    }), mountPoint[0]);
   } else {
-    // blame the given file + show view on success
-    projectBlamer.blame(filePath, function(err, blame) {
-      if (err) {
-        errorController.handleError(err);
-      } else {
-        insertBlameView(blame, $focusedEditor);
-      }
-    });
+    editorView.blameView.toggle();
   }
 }
 
-/**
- * Debounced version of toggleBlame that will only allow toggleBlame function
- * to be executed 700ms after the last execution. Executes immediately the first
- * time its called.
- */
-var debouncedToggleBlame = _.debounce(toggleBlame, TOGGLE_DEBOUNCE_TIME, true);
-
-/**
- * Makes the view arguments scroll position match the target elements scroll position
- *
- * @param {JQuery} view - the view whose scrollTop to adjust
- * @param {JQuery} target - element whose scrollTop should be matched
- */
-function matchScrollPosition(view, target) {
-  var targetScrollTop = target.scrollTop();
-  view.scrollTop(targetScrollTop);
-}
-
-/**
- * Inserts a BlameView rendered from input blameData into its proper
- * spot within the focusedEditor.
- *
- * @param {Array|Object} blameData - array of data for a blame of each line output
- *    of blameFormatter
- * @param {JQuery} focusedEditor - the currently focused editor element in which
- *    the BlameView should be inserted
- */
-function insertBlameView(blameData, focusedEditor) {
-  var viewData = {
-    annotations: blameData
-  };
-  var blameView = new BlameListView(viewData);
-  var verticalScrollBar = focusedEditor.find('.vertical-scrollbar');
-
-  // Bind to scroll event on vertical-scrollbar for now to sync up scroll
-  // position of blame gutter.
-  verticalScrollBar.on('scroll', function(e) {
-    matchScrollPosition(blameView, $(e.target));
-  });
-
-  // insert the BlameListView after the gutter div
-  var selector = focusedEditor.hasClass('react') ? SELECTOR_REACT : SELECTOR;
-  focusedEditor.find(selector).after(blameView);
-  focusedEditor.addClass('blaming');
-
-  // match scroll positions in case we blame at a scrolled position
-  matchScrollPosition(blameView, verticalScrollBar);
-}
 
 // EXPORTS
 module.exports = {
-  toggleBlame: debouncedToggleBlame
-}
+  toggleBlame: toggleBlame
+};

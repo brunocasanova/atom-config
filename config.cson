@@ -1,25 +1,31 @@
-'editor':
-  'tabLength': 4
-  'showIndentGuide': true
-  'showInvisibles': true
-  'invisibles': {}
-  'fontSize': 12
-  'scrollPastEnd': true
-  'softWrapAtPreferredLineLength': true
-  'softWrap': true
-'core':
-  'themes': [
-    'atom-dark-ui'
-    'monokai'
-  ]
-  'projectHome': '~/GitHub/'
-  'disabledPackages': [
-    'tabs'
-    'metrics'
-    'exception-reporting'
-  ]
-'minimap':
-  'plugins':
-    'git-diff': true
-'tabs':
-  'showIcons': true
+'global':
+  'editor':
+    'tabLength': 4
+    'showIndentGuide': true
+    'showInvisibles': true
+    'invisibles': {}
+    'fontSize': 12
+    'scrollPastEnd': true
+    'softWrapAtPreferredLineLength': true
+    'softWrap': true
+  'core':
+    'themes': [
+      'atom-dark-ui'
+      'monokai'
+    ]
+    'projectHome': '~/GitHub/'
+    'disabledPackages': [
+      'metrics'
+      'exception-reporting'
+    ]
+  'minimap':
+    'plugins':
+      'git-diff': true
+  'timekeeper':
+    'autoEnableTimeTrackingOnLoad': true
+  'tabs':
+    'showIcons': true
+  'tree-view':
+    'hideVcsIgnoredFiles': false
+    'hideIgnoredNames': false
+    'showOnRightSide': false

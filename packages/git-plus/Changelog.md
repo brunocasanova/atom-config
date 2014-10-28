@@ -1,5 +1,30 @@
 ## Changelog
 
+### 4.2.0
+
+- New Git merge feature thanks to @herlon214
+
+### 4.1.2
+
+- Using new atom api for configs and subscribing to make it easier for moving forward and maintenance
+
+### 4.1.1
+
+- Fix issue of commit tab not opening
+- Still need to remove dependency on Theorist
+
+### 4.1.0
+
+- Return of git-plus command palette
+
+### 4.0.0
+
+- THIS IS THE LAST PUSH OF NEW FEATURES. I'm stopping development of this package because I don't have time and on top of that, I don't use atom anymore
+- Adding new command called 'Git Run'. This allows you to run git commands like in the command line. i.e. `add --all .` or `clone git@github.com:akonwi/git-plus my-git-plus`
+- Removed Git-Plus command palette and merged all commands into atom command palette
+- all commands are now accessible via keymappings
+- Add setting to change message display time in seconds
+
 ### 3.10.4
 
 - Fix for object names being shortened unnecessarily.
@@ -40,7 +65,7 @@
 
 ### 3.5.0
 
-- The more common commands are now accessible through keybindings  
+- The more common commands are now accessible through keybindings
 
     * Add
     * Add all and commit
@@ -79,7 +104,7 @@
 ### 3.0.0
 #### Includes massive amounts of refactoring to internal api
 
-- Dedicated command palette for git commands. Can be opened with  
+- Dedicated command palette for git commands. Can be opened with
 `[cmd|ctrl]-shift-h`
 
 - `Git init` is available in projects that are not git repos.
@@ -124,7 +149,7 @@
 
 ### 2.8.0
 
-- `Git log`  
+- `Git log`
   Can also configure how many commits to show in log
 
 - `Git show` commits of current file

@@ -1,21 +1,24 @@
 const shell = require('shell');
 const _ = require('underscore');
 const loophole = require('loophole');
-
 const errorController = require('../controllers/errorController');
 
-function RemoteRevision(hash, remote) {
-  this.hash = hash;
+function RemoteRevision(remote) {
   this.remote = remote;
+  this.initialize();
 }
 
 // ================
 // Class Methods
 // ================
 
-RemoteRevision.create = function(hash, remoteUrl) {
-  return new RemoteRevision(hash, remoteUrl);
-}
+RemoteRevision.create = function(remoteUrl) {
+  var rr = new RemoteRevision(remoteUrl);
+  if (!rr.getTemplate()) {
+    throw "Cannot create RemoteRevision with invalid template";
+  }
+  return rr;
+};
 
 // ================
 // Instance Methods
@@ -23,46 +26,69 @@ RemoteRevision.create = function(hash, remoteUrl) {
 
 _.extend(RemoteRevision.prototype, {
 
+  /**
+   * Default url template for a github.com commit.
+   */
   githubTemplate: 'https://github.com/<%- project %>/<%- repo %>/commit/<%- revision %>',
 
+  /**
+   * Default url template for a bitbucket.org commit.
+   */
   bitbucketTemplate: 'https://bitbucket.org/<%- project %>/<%- repo %>/commits/<%- revision %>',
 
-  open: function() {
-    var url = this.url();
-    if (url) {
-      shell.openExternal(url);
+  /**
+   * Should be called after the remote property is set. Parses the remote url
+   * for project and repo and stores them as their own properties.
+   */
+  initialize: function() {
+    var data = this.parseProjectAndRepo();
+    if (data.project && data.repo) {
+      this.project = data.project;
+      this.repo = data.repo;
+    } else {
+      // we were unable to parse data from the remote...
+      errorController.showError('error-problem-parsing-data-from-remote');
     }
   },
 
-  url: function() {
+  /**
+   * Generates a URL for the given revision/commit identifier based on the parsed
+   * remote data and the template.
+   */
+  url: function(revision) {
     var template = this.getTemplate();
-
     if (!template) {
-      errorController.showError('error-no-custom-url-specified');
-      return;
+      // this should be impossible, so throw
+      throw "No template present in RemoteRevision";
+    }
+
+    // we were unable to parse upon initialization...so return empty url
+    if (!this.project || !this.repo || !revision) {
+      return '';
     }
 
     // create data object used to render template string
-    var data = this.parseProjectAndRepo();
-    data.revision = this.hash;
-
-    // ensure we have all the correct vars in the template data
-    if (!this.verifyTemplateData(data)) {
-      errorController.showError('error-problem-parsing-data-from-remote');
-      return;
-    }
+    var data = {
+      revision: revision,
+      project: this.project,
+      repo: this.repo
+    };
 
     // return a rendered url
     return template(data);
   },
 
-  verifyTemplateData: function(data) {
-    return !!(data.project && data.repo && data.revision);
-  },
-
+  /**
+   * Parses project and repo from this.remote.
+   *
+   * @returns Object containing the project and repo.
+   */
   parseProjectAndRepo: function() {
-    var pattern = /[\:\/]([\w-]*)?\/?([\w-]*)(\.git)?$/;
-    var matches = this.remote.match(pattern);
+    // strip off .git if its there
+    var strippedRemoteUrl = this.remote.replace(/(\.git)$/, "");
+
+    var pattern = /[\:\/]([.\w-]*)?\/?([.\w-]*)$/;
+    var matches = strippedRemoteUrl.match(pattern);
 
     // if we have no matches just return empty object. caller should validate
     // data before using it.
@@ -83,6 +109,10 @@ _.extend(RemoteRevision.prototype, {
     });
   },
 
+  /**
+   * Creates a template function using either default github / bitbucket
+   * url templates or a custom url template strings specified in the configs.
+   */
   getTemplate: function() {
     if (this.isGithub()) {
       return this.safeTemplate(this.githubTemplate);
@@ -95,10 +125,8 @@ _.extend(RemoteRevision.prototype, {
     if (atom.config.get('git-blame.useCustomUrlTemplateIfStandardRemotesFail')) {
       var customUrlTemplate = atom.config.get('git-blame.customCommitUrlTemplateString');
 
-      // if the user hasnt entered a template string...inform them
+      // if the user hasnt entered a template string, return nothing
       if (/^Example/.test(customUrlTemplate)) {
-        // TODO inform user
-        errorController.showError('error-no-custom-url-specified');
         return;
       }
 
@@ -106,10 +134,16 @@ _.extend(RemoteRevision.prototype, {
     }
   },
 
+  /**
+   * Returns true if this RemoteRevision represents a github repository.
+   */
   isGithub: function() {
     return /github.com/.test(this.remote);
   },
 
+  /**
+   * Returns true if this RemoteRevision represents a bitbucket repository.
+   */
   isBitbucket: function() {
     return /bitbucket.org/.test(this.remote);
   }
